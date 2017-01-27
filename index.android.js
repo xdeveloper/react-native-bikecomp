@@ -4,50 +4,59 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
+    AppRegistry, StyleSheet, Text,
+    View, Switch, TextInput
 } from 'react-native';
 
+import Tabs from 'react-native-tabs';
+
 export default class Bikecomp extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.state = {page: 'second'};
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+
+                <Tabs
+                    selected={this.state.page}
+                    selectedStyle={{color:'red'}}
+                    selectedIconStyle={{borderBottomWidth:5,borderBottomColor:'red'}}
+                    onSelect={el=>this.setState({page:el.props.name})}>
+
+                    <Text name="first">First</Text>
+                    <Text name="second">Second</Text>
+                </Tabs>
+
+
+                <Text>
+                    Welcome to React Native!
+                </Text>
+
+
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'yellow',
+    },
+
+    instructions: {
+        textAlign: 'center',
+        color: '#333333',
+        marginBottom: 5,
+    },
 });
 
 AppRegistry.registerComponent('Bikecomp', () => Bikecomp);
