@@ -1,16 +1,14 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
+ * Main screen
  */
-
 import React, {Component} from 'react';
 import {
     AppRegistry, StyleSheet, Text,
-    View, Switch, TextInput
+    View, Switch, TextInput, Dimensions
 } from 'react-native';
 
-import Tabs from 'react-native-tabs';
+import ScrollableTabView, {DefaultTabBar,} from 'react-native-scrollable-tab-view';
+
 
 export default class Bikecomp extends Component {
     constructor(props) {
@@ -19,27 +17,12 @@ export default class Bikecomp extends Component {
     }
 
     render() {
-        return (
-            <View style={styles.container}>
-
-                <Tabs
-                    selected={this.state.page}
-                    selectedStyle={{color:'red'}}
-                    selectedIconStyle={{borderBottomWidth:5,borderBottomColor:'red'}}
-                    onSelect={el=>this.setState({page:el.props.name})}>
-
-                    <Text name="first">First</Text>
-                    <Text name="second">Second</Text>
-                </Tabs>
-
-
-                <Text>
-                    Welcome to React Native!
-                </Text>
-
-
-            </View>
-        );
+        return <ScrollableTabView
+            style={{marginTop: 20, }}
+            renderTabBar={() => <DefaultTabBar />}>
+            <Text tabLabel='Main'>Main</Text>
+            <Text tabLabel='Additional'>Additional</Text>
+        </ScrollableTabView>;
     }
 }
 
