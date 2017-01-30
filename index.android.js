@@ -7,7 +7,9 @@ import {
     View, Switch, TextInput, Dimensions
 } from 'react-native';
 
-import ScrollableTabView, {DefaultTabBar,} from 'react-native-scrollable-tab-view';
+import ScrollableTabView, {DefaultTabBar, FacebookTabBar} from 'react-native-scrollable-tab-view';
+
+import Indicator from './indicator.js'
 
 
 export default class Bikecomp extends Component {
@@ -20,7 +22,13 @@ export default class Bikecomp extends Component {
         return <ScrollableTabView
             style={{marginTop: 20, }}
             renderTabBar={() => <DefaultTabBar />}>
-            <Text tabLabel='Main'>Main</Text>
+                <View style={styles.container}>
+                    <Indicator type="speed"/>
+                    <Indicator type="clock"/>
+                    <Indicator type="time"/>
+                    <Indicator type="avg_speed"/>
+                </View>
+
             <Text tabLabel='Additional'>Additional</Text>
         </ScrollableTabView>;
     }
@@ -32,14 +40,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'yellow',
-    },
-
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
+        backgroundColor: 'white',
+    }
 });
 
 AppRegistry.registerComponent('Bikecomp', () => Bikecomp);
