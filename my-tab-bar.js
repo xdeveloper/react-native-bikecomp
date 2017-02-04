@@ -8,31 +8,52 @@ export default class MyTabBar extends Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            selectedTabTitle: props.selectedTabTitle
+        }
     }
 
     render() {
-        console.log('Rendering Tab Bar');
-
-        //let filtered = this.props.children.filter(c => true);
-
-        //console.log(filtered);
-
         let list = this.props.children;
+        let selectedTabTitle = this.state.selectedTabTitle;
 
-        var rs =  React.Children.map(list, (el) => {
-            //console.log(el);
-
+        var tabHeader = React.Children.map(list, (el) => {
             let title = el.props.title;
-            console.log(title);
 
-            return <Text>{title}</Text>;
+            return <View style={styles.tabHeaderElement}><Text style={styles.title}>T: {title}</Text></View>
         });
 
-        return <View>{rs}</View>;
+        var tabContent = React.Children.map(list, (el) => {
+            let title = el.props.title;
+            if (selectedTabTitle === title) {
+                console.log('Show tab with title ' + selectedTabTitle);
+                return el;
+            }
+        });
+
+        return <View><View style={styles.container}>{tabHeader}</View>{tabContent}</View>;
 
 
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
+    },
+    tabHeaderElement: {
+        backgroundColor: 'yellow',
+        padding: 10
+    },
+    title: {
+        color: 'red',
+        fontSize: 20
+    }
+});
 
 
 AppRegistry.registerComponent('MyTabBar', () => MyTabBar);
