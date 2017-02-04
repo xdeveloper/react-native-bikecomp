@@ -13,8 +13,6 @@ export default class Indicator extends Component {
     }
 
     render() {
-        //return <Text>{this.type}</Text>
-
         return <View style={styles.container}>
             <Text>{this.type}</Text>
         </View>
@@ -27,6 +25,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        alignSelf: "stretch",
 
         borderWidth: 1,
         backgroundColor: '#fff',

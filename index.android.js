@@ -10,27 +10,29 @@ import {
 import ScrollableTabView, {DefaultTabBar, FacebookTabBar} from 'react-native-scrollable-tab-view';
 
 import Indicator from './indicator.js'
+import MyTabBar from './my-tab-bar.js'
+import Ololo from './my-tab-bar-ololo.js'
 
 
 export default class Bikecomp extends Component {
     constructor(props) {
+        console.log("Bikecomp is starting ....");
+
         super(props);
         this.state = {page: 'second'};
     }
 
     render() {
-        return <ScrollableTabView
-            style={{marginTop: 20, }}
-            renderTabBar={() => <DefaultTabBar />}>
-                <View style={styles.container}>
-                    <Indicator type="speed"/>
-                    <Indicator type="clock"/>
-                    <Indicator type="time"/>
-                    <Indicator type="avg_speed"/>
-                </View>
+        console.log("Rendering ...");
 
-            <Text tabLabel='Additional'>Additional</Text>
-        </ScrollableTabView>;
+        return <View>
+            <Text>Hello!</Text>
+
+            <MyTabBar>
+                <Ololo title="zzzz"></Ololo>
+            </MyTabBar>
+
+        </View>
     }
 }
 
