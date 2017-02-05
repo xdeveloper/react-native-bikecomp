@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    AppRegistry, StyleSheet, Text, View
+    AppRegistry, StyleSheet, Text, View, TouchableOpacity
 } from 'react-native';
 
 
@@ -14,23 +14,32 @@ export default class MyTabBar extends Component {
         }
     }
 
+    selectTab(title) {
+        this.setState({
+            selectedTabTitle: title
+        })
+    }
+
     render() {
-        let list = this.props.children;
         let selectedTabTitle = this.state.selectedTabTitle;
+        let tabContent = null;
 
-        var tabHeader = React.Children.map(list, (el) => {
+        var tabHeader = React.Children.map(this.props.children, (el) => {
             let title = el.props.title;
+            let tabHeaderStyle;
 
-            return <View style={styles.tabHeaderElement}><Text style={styles.title}>T: {title}</Text></View>
-        });
-
-        var tabContent = React.Children.map(list, (el) => {
-            let title = el.props.title;
             if (selectedTabTitle === title) {
-                console.log('Show tab with title ' + selectedTabTitle);
-                return el;
+                tabContent = el;
+                tabHeaderStyle = styles.tabHeaderSelected;
+            } else {
+                tabHeaderStyle = styles.tabHeader;
             }
+
+            return <TouchableOpacity style={tabHeaderStyle} onPress={ () => this.selectTab(title) }>
+                <Text style={styles.title}>{title}</Text>
+            </TouchableOpacity>
         });
+
 
         return <View><View style={styles.container}>{tabHeader}</View>{tabContent}</View>;
 
@@ -42,18 +51,19 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'white',
+        alignItems: 'center'
     },
-    tabHeaderElement: {
-        backgroundColor: 'yellow',
-        padding: 10
+    tabHeader: {
+        padding: 1
+    },
+    tabHeaderSelected: {
+        borderWidth: 2,
+        borderRadius: 10
     },
     title: {
-        color: 'red',
+        padding: 3,
         fontSize: 20
     }
 });
-
 
 AppRegistry.registerComponent('MyTabBar', () => MyTabBar);
