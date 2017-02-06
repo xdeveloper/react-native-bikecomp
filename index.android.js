@@ -2,11 +2,7 @@
  * Main screen
  */
 import React, {Component} from 'react';
-import {
-    AppRegistry, StyleSheet, Text,
-    View, Switch, TextInput, Dimensions, ScrollView, ViewPagerAndroid
-} from 'react-native';
-
+import {AppRegistry, StyleSheet, Text, View} from 'react-native';
 import Indicator from './indicator.js'
 import MyTabBar from './my-tab-bar.js'
 import TabBarPanel from './my-tab-bar-panel.js'
@@ -30,9 +26,9 @@ export default class Bikecomp extends Component {
             <MyTabBar selectedTabTitle="Third" >
 
                 <TabBarPanel title="Main">
-                    <Indicator/>
+                    <Indicator type="speed" />
                     <Text>
-                        Думи мої, думc и мої,
+                        Думи мої, думи и мої,
                         Лихо мені з вами!
                         Нащо стали на папері
                         Сумними рядами?..
@@ -59,7 +55,9 @@ export default class Bikecomp extends Component {
                 </TabBarPanel>
 
                 <TabBarPanel title="Third">
-                    <Text>Something else...</Text>
+                    <Indicator type="clock" />
+                    <Indicator type="remaining" />
+                    <Indicator type="average_speed" />
                 </TabBarPanel>
 
             </MyTabBar>
