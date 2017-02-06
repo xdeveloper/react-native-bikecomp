@@ -4,7 +4,7 @@
 import React, {Component} from 'react';
 import {
     AppRegistry, StyleSheet, Text,
-    View, Switch, TextInput, Dimensions
+    View, Switch, TextInput, Dimensions, ScrollView, ViewPagerAndroid
 } from 'react-native';
 
 import Indicator from './indicator.js'
@@ -25,12 +25,14 @@ export default class Bikecomp extends Component {
 
         return <View>
 
-            <MyTabBar selectedTabTitle="Secondary">
+            <Text>Top -</Text>
+
+            <MyTabBar selectedTabTitle="Third" >
 
                 <TabBarPanel title="Main">
                     <Indicator/>
                     <Text>
-                        Думи мої, думи мої,
+                        Думи мої, думc и мої,
                         Лихо мені з вами!
                         Нащо стали на папері
                         Сумними рядами?..
@@ -61,6 +63,8 @@ export default class Bikecomp extends Component {
                 </TabBarPanel>
 
             </MyTabBar>
+
+            <Text>Bottom -</Text>
 
         </View>
     }

@@ -41,7 +41,12 @@ export default class MyTabBar extends Component {
         });
 
 
-        return <View><View style={styles.container}>{tabHeader}</View>{tabContent}</View>;
+        return <View>
+            <View style={styles.container}>{tabHeader}</View>
+            <TouchableOpacity onPress={() => alert(1)} style={styles.tabPanelOpacity}>
+                {tabContent}
+            </TouchableOpacity>
+        </View>;
 
 
     }
@@ -63,6 +68,10 @@ const styles = StyleSheet.create({
     title: {
         padding: 3,
         fontSize: 20
+    },
+    tabPanelOpacity: {
+        borderWidth: 1,
+        padding: 9
     }
 });
 
